@@ -4,11 +4,7 @@ import { getCryptoData, getCryptoDataForCurrency, getCryptoCurrencyList } from '
 import { formProfitData } from '../selector';
 import CryptoDetails from '../components/CryptoDetails';
 import Filter from '../components/Filter';
-/*
-const CryptoCurrencyApp = () =>{
-return(<div>Inside CryptoCurrencyApp</div>);
-};
-*/
+import { ALL_CURRENCY_CODE, APP_TITLE } from '../constantsVar';
 
 export class CryptoCurrencyApp extends React.Component {
 
@@ -16,31 +12,35 @@ export class CryptoCurrencyApp extends React.Component {
         super(props);
 
         this.state = {
-            currencyCode: "All"
+            currencyCode: ALL_CURRENCY_CODE
         }
     }
+
     componentDidMount() {
         this.props.getCryptoData();
         this.props.getCryptoCurrencyList();
     };
 
-    getDetailsByCurrency = () => {
-
-        this.state.currencyCode === "All" ? this.props.getCryptoData() : this.props.getCryptoDataForCurrency(this.state.currencyCode);
+    getDetailsByCurrency = (currencyCode) => {
+        console.log('inside get',currencyCode);
+        currencyCode === ALL_CURRENCY_CODE ?
+        this.props.getCryptoData() :
+        this.props.getCryptoDataForCurrency(currencyCode);
     };
 
     resetData = () => {
-
         this.props.getCryptoData();
         this.setState({
-            currencyCode: "All"
+            currencyCode: ALL_CURRENCY_CODE
         })
     };
+
     handleFilter = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
+        console.log('hande',e.target.value);
+        this.setState(()=>{ return {currencyCode: e.target.value}});
+        this.getDetailsByCurrency(e.target.value);
     };
+
     render() {
         const { currencyCodeList } = this.props;
         return (
@@ -50,16 +50,14 @@ export class CryptoCurrencyApp extends React.Component {
 
                     </div>
 
-                    <div className="col-md-9">
-                        <h2><p className="font-weight-bold marginTop">Crypto Currency Profit Details</p></h2>
+                    <div className="col-md-12">
+                        <h2><p className="font-weight-bold marginTop">{APP_TITLE}</p></h2>
 
                        {this.props.isError &&  <div class="alert alert-danger" role="alert">
                             {this.props.errorMessage}
                         </div>
                        }
                         <Filter currencyCodeList={currencyCodeList}
-                            getDetailsByCurrency={this.getDetailsByCurrency}
-                            resetData={this.resetData}
                             handleFilter={this.handleFilter}
                             filterValue={this.state.currencyCode}
                         />

@@ -1,10 +1,10 @@
 import React from 'react';
 import Moment from 'react-moment';
+import { BUY,SELL } from '../constantsVar';
 
 export default function CryptoDetails({ cryptoProfitList }) {
   return (
-    <>
-     
+    <>     
       <div className="row marginTop" id="rowData">
         {cryptoProfitList != null && cryptoProfitList != undefined ? cryptoProfitList.map(cryptoProfitData => {
           return (
@@ -14,8 +14,8 @@ export default function CryptoDetails({ cryptoProfitList }) {
                   <tr><th colSpan="2" id="date"><Moment format="DD-MMM-YY">{cryptoProfitData.date}</Moment></th></tr>
                   <tr><th colSpan="2" id="currency">{cryptoProfitData.currency}</th></tr>
                   <tr>
-                    <th>Buy</th>
-                    <th>Sell</th>
+                    <th>{BUY}</th>
+                    <th>{SELL}</th>
                   </tr>
                 </thead>
                 <tbody>
