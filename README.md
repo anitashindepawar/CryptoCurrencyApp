@@ -7,6 +7,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### `cd CryptoCurrencyApp`
 ### `npm run start-server`
 
-Open another terminal and run:
+Open another terminal in the same folder and run:
 ### `npm start`
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
