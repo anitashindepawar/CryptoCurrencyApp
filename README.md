@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Steps to run the application locally
 ### `git clone https://github.com/anitashindepawar/CryptoCurrencyApp.git`
 ### `cd CryptoCurrencyApp`
+### `npm install`
 ### `npm run start-server`
 
 Open another terminal in the same folder and run:
